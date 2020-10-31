@@ -1,0 +1,30 @@
+<h3>Tasks for Today</h3>
+
+  <!--para acrescentar tarefas(tasks) a fazer
+[(ngModel)]="newTask"- string k tem o que se escreve no input - é um  FormControl que permite fazer binding  
+e que vai ser usada na funçao add como parametro ver component.ts
+-->
+<input #newTodo placeholder="Qu'avez-vous à faire ?" [(ngModel)]="newTask" />
+<button (click)="add(newTask); newTask=''">
+    Ajouter
+</button>
+
+<ul class="heroes">
+  
+  <li *ngFor="let newT of myTasks"> <!--newT,objeto do tipo task,contem cada uma das tarefas que esta na lista myTasks-->
+    <mat-checkbox class="example-margin checkbox" [(ngModel)]="newT.checked" ></mat-checkbox> 
+
+    <!-- [(ngModel)]="newT.checked" - Fiz binding k permite dar a um elemento html o valor de uma variavel (double way binding) e vice-versa.Substitui o set/ getDocumentById todos
+    Assim nao preciso da funçao riscar pk eu digo a checkbox para ter o valor de newT.checked e vice-versa.
+    
+   Se quisesse usar a funçao rayer de services[(ngModel)]="newT.checked" aqui mete-se newT como objeto(id, name, ckecked) mas na funçao rayer usa-se so a propriedae checked para mudar o seu valor de T para F)
+     mais chama-la em component.ts -->
+
+
+    <span class="heroes" [ngClass]="{'crossed' : newT.checked}"> <!--se newT.checked = true mostra a class crossed se nao tira a class crossed - vi na doc de ngclass.-->
+        {{ newT.name }} <!--aceder a propriedade nome da task-->
+      </span>
+  </li>
+  
+</ul>
+
